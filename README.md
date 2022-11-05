@@ -6,7 +6,7 @@ Compile -->    javac -cp po-uilib.jar:. `find prr -name "*.java"`
 
 Run --> java -cp po-uilib.jar:. prr.app.App
 
-To run the tests(after compiling) --> ./runtests.sh 
+To run the tests (after compiling) --> ./runtests.sh 
 
 This project took about 2-3 weeks of effort.
 
