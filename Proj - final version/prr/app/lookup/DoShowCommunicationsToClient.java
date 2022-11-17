@@ -11,6 +11,8 @@ import pt.tecnico.uilib.menus.CommandException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 //FIXME add more imports if needed
 
 /**
@@ -31,16 +33,20 @@ class DoShowCommunicationsToClient extends Command<Network> {
     try{
       Client client = _receiver.getClient(key);
       List<Terminal> terminals = new ArrayList<>(client.getTerminals());
+      Map<Integer, Communication> sorted = new TreeMap<>();
       for(Terminal term : terminals){
         List<Communication> communications = new ArrayList<>(term.getReceivedCommunications());
         for(Communication com : communications){
-          _display.addLine(com.toString());
+          sorted.put(com.getId(), com);
         }
       }
+      for(Communication com : sorted.values()){
+        _display.addLine(com.toString());
+      }
+      _display.display();
     }
     catch(CoreUnknownClientKeyException c){
       throw new UnknownClientKeyException(key);
     }
-    _display.display();
   }
 }

@@ -2,6 +2,7 @@ package prr.app.terminal;
 
 import prr.core.Network;
 import prr.core.terminal.Terminal;
+import prr.core.terminal.TerminalMode;
 import pt.tecnico.uilib.menus.CommandException;
 //FIXME add more imports if needed
 
@@ -26,6 +27,9 @@ class DoEndInteractiveCommunication extends TerminalCommand {
     owner.turnNormal();
     owner.turnGold();
     owner.turnPlatinum();
+    if(_receiver.getMode().equals(TerminalMode.IDLE)){
+      _receiver.notifyObserver();
+    }
     _display.popup(Message.communicationCost(Math.round(cost)));
   }
 }

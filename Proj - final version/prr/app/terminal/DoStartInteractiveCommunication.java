@@ -37,14 +37,14 @@ class DoStartInteractiveCommunication extends TerminalCommand{
     catch(CoreDestinationOffException u){
       _display.popup(Message.destinationIsOff(key));
     }
-    catch(CoreDestinationSilentException o){
-      _display.popup(Message.destinationIsSilent(key));
-    }
     catch(CoreDestinationBusyException e){
       _display.popup(Message.destinationIsBusy(key));
     }
+    catch(CoreDestinationSilentException o){
+      _display.popup(Message.destinationIsSilent(key));
+    }
     catch(CoreUnsupportedAtOriginException s){
-      _display.popup(Message.unsupportedAtOrigin(key, type));
+      _display.popup(Message.unsupportedAtOrigin(_receiver.getId(), type));
     }
     catch(CoreUnsupportedAtDestinationException d){
       _display.popup(Message.unsupportedAtDestination(key, type));
